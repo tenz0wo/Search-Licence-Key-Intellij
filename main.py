@@ -1,5 +1,7 @@
 import requests
 
+POSSIBLE_URLS = []
+
 with open("main.txt", "r") as f:
     urls = f.readlines()  
     
@@ -7,9 +9,9 @@ with open("main.txt", "r") as f:
         try:
             response = requests.get(url=url, timeout=2)
             response.raise_for_status()  
-            
-            print("[!] Status Code: ", response.status_code, "Url: ", url)
-            
-            
+            POSSIBLE_URLS.append(url.strip("\n"))
         except requests.exceptions.RequestException as e:        
-            print("[!] Error:", e)
+            ...
+
+for pos in POSSIBLE_URLS:
+    print("[!] Possible Url :", pos)
